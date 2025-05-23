@@ -221,7 +221,7 @@ Transform:
   m_GameObject: {fileID: 18029595}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.9, y: 12.14, z: 3.1588492}
+  m_LocalPosition: {x: -11.67, y: 12.14, z: 3.1588492}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -317,7 +317,7 @@ GameObject:
   - component: {fileID: 584079327}
   - component: {fileID: 584079326}
   - component: {fileID: 584079325}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -407,7 +407,7 @@ Transform:
   m_GameObject: {fileID: 584079324}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.44, y: 7.78, z: 3.1588492}
+  m_LocalPosition: {x: -1.77, y: 13.22, z: 3.1588492}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -446,6 +446,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 1967927604}
   lineRenderer: {fileID: 856315255}
+  grappleLayer:
+    serializedVersion: 2
+    m_Bits: 256
   maxDistant: 50
   grappleSpeed: 50
 --- !u!120 &856315255
@@ -675,7 +678,7 @@ GameObject:
   - component: {fileID: 1025899371}
   - component: {fileID: 1025899370}
   - component: {fileID: 1025899369}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
