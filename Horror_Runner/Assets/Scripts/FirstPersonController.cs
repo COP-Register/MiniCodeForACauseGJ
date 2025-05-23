@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using InputSystem;
+using UnityEngine;
 using UnityEngine.Serialization;
 #if ENABLE_INPUT_SYSTEM
 using UnityEngine.InputSystem;
@@ -52,6 +53,8 @@ namespace StarterAssets
 		[Tooltip("How far in degrees can you move the camera down")]
 		public float BottomClamp = -90.0f;
 
+		public Vector3 PlatformVelocity = Vector3.zero;
+
 		// cinemachine
 		private float _cinemachineTargetPitch;
 
@@ -61,14 +64,8 @@ namespace StarterAssets
 		[FormerlySerializedAs("_verticalVelocity")] public float VerticalVelocity;
 		private float _terminalVelocity = 53.0f;
 
-		// timeout deltatime
-		private float _jumpTimeoutDelta;
-		private float _fallTimeoutDelta;
 
-	
-#if ENABLE_INPUT_SYSTEM
 		private PlayerInput _playerInput;
-#endif
 		private CharacterController _controller;
 		private StarterAssetsInputs _input;
 		private GameObject _mainCamera;
@@ -100,15 +97,7 @@ namespace StarterAssets
 		{
 			_controller = GetComponent<CharacterController>();
 			_input = GetComponent<StarterAssetsInputs>();
-#if ENABLE_INPUT_SYSTEM
 			_playerInput = GetComponent<PlayerInput>();
-#else
-			Debug.LogError( "Starter Assets package is missing dependencies. Please use Tools/Starter Assets/Reinstall Dependencies to fix it");
-#endif
-
-			// reset our timeouts on start
-			_jumpTimeoutDelta = JumpTimeout;
-			_fallTimeoutDelta = FallTimeout;
 		}
 
 		private void Update()
@@ -193,10 +182,11 @@ namespace StarterAssets
 			{
 				// move
 				inputDirection = transform.right * _input.move.x + transform.forward * _input.move.y;
+				PlatformVelocity = Vector3.zero;
 			}
 
 			// move the player
-			_controller.Move(inputDirection.normalized * (_speed * Time.deltaTime) + new Vector3(0.0f, VerticalVelocity, 0.0f) * Time.deltaTime);
+			_controller.Move(inputDirection.normalized * (_speed * Time.deltaTime) + new Vector3(0.0f, VerticalVelocity, 0.0f) * Time.deltaTime  + PlatformVelocity * Time.deltaTime);
 		}
 
 		private void JumpAndGravity()
