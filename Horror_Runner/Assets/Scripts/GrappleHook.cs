@@ -32,11 +32,14 @@ public class GrappleHook : MonoBehaviour
     {
         if (_input.jump && !_isGrappling)
         {
-            if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out var hit, maxDistant, grappleLayer))
+            if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out var hit, maxDistant))
             {
-                _grapplePoint = hit.point;
-                _grappleDirection = _grapplePoint - transform.position;
-                _isGrappling = true;
+                if (((1 << hit.collider.gameObject.layer) & grappleLayer) != 0)
+                {
+                    _grapplePoint = hit.point;
+                    _grappleDirection = _grapplePoint - transform.position;
+                    _isGrappling = true;
+                }
             }
         }
         
@@ -50,6 +53,12 @@ public class GrappleHook : MonoBehaviour
             lineRenderer.enabled = false;
             _grapplePoint = Vector3.zero;
             lineRenderer.enabled = false;
+        }
+
+        if (!_firstPersonController.IsGrounded()) return;
+        if (_firstPersonController.VerticalVelocity < 0.0f)
+        {
+            _firstPersonController.VerticalVelocity = -2f;
         }
     }
 
