@@ -1,6 +1,8 @@
+using System;
 using InputSystem;
 using StarterAssets;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class PlayerChargeJump : MonoBehaviour
 {
@@ -16,20 +18,26 @@ public class PlayerChargeJump : MonoBehaviour
     [SerializeField] private float jumpLoadMax = 20f;
     [SerializeField] private float chargeTime = 20f;
     
+    private Vector3 _lastPosition;
+    private const float Tolerance = 0.01f;
+    [SerializeField] private float jumpTimer;
+    [SerializeField] private bool isJumping = false;
+
     //private bool _isLoading = false;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private void Start()
     {
         _input = GetComponent<StarterAssetsInputs>();
         _fpController = GetComponent<FirstPersonController>();
         // reset our timeouts on start
         _jumpTimeoutDelta = _fpController.JumpTimeout;
         _fallTimeoutDelta = _fpController.FallTimeout;
+        _lastPosition = transform.position;
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         Jump();
     }
@@ -54,14 +62,16 @@ public class PlayerChargeJump : MonoBehaviour
                 // _fpController.VerticalVelocity = Mathf.Sqrt(_fpController.JumpHeight * -2f * _fpController.Gravity);
                 if (_jumpLoad <= jumpLoadMax)
                 {
-                    _jumpLoad = _jumpLoad + (chargeTime * Time.deltaTime);
+                    _jumpLoad += (chargeTime * Time.deltaTime);
                 }
             }
 
-            if (_input.jump == false && _jumpLoad >= 0.0f)
+            if (_input.jump == false && _jumpLoad >= 0.1f)
             {
                 _fpController.VerticalVelocity = Mathf.Sqrt(_fpController.JumpHeight * -2f * _fpController.Gravity * _jumpLoad);
                 _jumpLoad = 0.0f;
+                jumpTimer = 0.5f;
+                isJumping = true;
             }
 
             // jump timeout
@@ -69,9 +79,23 @@ public class PlayerChargeJump : MonoBehaviour
             {
                 _jumpTimeoutDelta -= Time.deltaTime;
             }
+            
+            isJumping = false;
         }
         else
         {
+            if (jumpTimer >= 0.0f)
+            {
+                jumpTimer -= Time.deltaTime;
+            }
+            
+            if (Math.Abs(transform.position.y - _lastPosition.y) < Tolerance  && jumpTimer <= 0.0f)
+            {
+                _fpController.VerticalVelocity = -2f;
+            }
+            
+            _lastPosition = transform.position;
+            
             // reset the jump timeout timer
             _jumpTimeoutDelta = _fpController.JumpTimeout;
 
