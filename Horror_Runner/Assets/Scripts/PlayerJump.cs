@@ -1,6 +1,7 @@
 using InputSystem;
 using StarterAssets;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerJump : MonoBehaviour
 {
@@ -30,43 +31,46 @@ public class PlayerJump : MonoBehaviour
 
     private void Jump()
     {
-        if (_fpController.IsGrounded())
+        if (SceneManager.GetActiveScene().name == "Level_0")
         {
-            // reset the fall timeout timer
-            _fallTimeoutDelta = _fpController.FallTimeout;
-
-            // stop our velocity dropping infinitely when grounded
-            if (_fpController.VerticalVelocity < 0.0f)
+            if (_fpController.IsGrounded())
             {
-                _fpController.VerticalVelocity = -2f;
-            }
+                // reset the fall timeout timer
+                _fallTimeoutDelta = _fpController.FallTimeout;
 
-            // Jump
-            if (_input.jump && _jumpTimeoutDelta <= 0.0f)
+                // stop our velocity dropping infinitely when grounded
+                if (_fpController.VerticalVelocity < 0.0f)
+                {
+                    _fpController.VerticalVelocity = -2f;
+                }
+
+                // Jump
+                if (_input.jump && _jumpTimeoutDelta <= 0.0f)
+                {
+                    // the square root of H * -2 * G = how much velocity needed to reach desired height
+                    _fpController.VerticalVelocity = Mathf.Sqrt(_fpController.JumpHeight * -2f * _fpController.Gravity);
+                }
+
+                // jump timeout
+                if (_jumpTimeoutDelta >= 0.0f)
+                {
+                    _jumpTimeoutDelta -= Time.deltaTime;
+                }
+            }
+            else
             {
-                // the square root of H * -2 * G = how much velocity needed to reach desired height
-                _fpController.VerticalVelocity = Mathf.Sqrt(_fpController.JumpHeight * -2f * _fpController.Gravity);
-            }
+                // reset the jump timeout timer
+                _jumpTimeoutDelta = _fpController.JumpTimeout;
 
-            // jump timeout
-            if (_jumpTimeoutDelta >= 0.0f)
-            {
-                _jumpTimeoutDelta -= Time.deltaTime;
-            }
-        }
-        else
-        {
-            // reset the jump timeout timer
-            _jumpTimeoutDelta = _fpController.JumpTimeout;
+                // fall timeout
+                if (_fallTimeoutDelta >= 0.0f)
+                {
+                    _fallTimeoutDelta -= Time.deltaTime;
+                }
 
-            // fall timeout
-            if (_fallTimeoutDelta >= 0.0f)
-            {
-                _fallTimeoutDelta -= Time.deltaTime;
+                // if we are not grounded, do not jump
+                _input.jump = false;
             }
-
-            // if we are not grounded, do not jump
-            _input.jump = false;
         }
     }
 }

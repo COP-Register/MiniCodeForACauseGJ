@@ -16,12 +16,12 @@ namespace StarterAssets
 		[Header("Player")]
 		[Tooltip("Move speed of the character in m/s")]
 		public float MoveSpeed = 4.0f;
-		[Tooltip("Sprint speed of the character in m/s")]
-		public float SprintSpeed = 6.0f;
+		[Tooltip("Air speed of the character in m/s")]
+		public float AirSpeed = 4.0f;
 		[Tooltip("Rotation speed of the character")]
 		public float RotationSpeed = 1.0f;
 		[Tooltip("Acceleration and deceleration")]
-		public float SpeedChangeRate = 10.0f;
+		public float SpeedChangeRate = 2.0f;
 
 		[Space(10)]
 		[Tooltip("The height the player can jump")]
@@ -35,9 +35,8 @@ namespace StarterAssets
 		[Tooltip("Time required to pass before entering the fall state. Useful for walking down stairs")]
 		public float FallTimeout = 0.15f;
 
-		[Header("Player Grounded")]
-		[Tooltip("If the character is grounded or not. Not part of the CharacterController built in grounded check")]
-		public bool Grounded = true;
+		[Header("Player Grounded")] 
+		public bool Grounded = false;
 		[Tooltip("Useful for rough ground")]
 		public float GroundedOffset = -0.14f;
 		[Tooltip("The radius of the grounded check. Should match the radius of the CharacterController")]
@@ -54,6 +53,7 @@ namespace StarterAssets
 		public float BottomClamp = -90.0f;
 
 		public Vector3 PlatformVelocity = Vector3.zero;
+		public Vector3 BounceVelocity = Vector3.zero;
 
 		// cinemachine
 		private float _cinemachineTargetPitch;
@@ -69,6 +69,7 @@ namespace StarterAssets
 		private CharacterController _controller;
 		private StarterAssetsInputs _input;
 		private GameObject _mainCamera;
+		private Vector3 _inputDir;
 
 		private const float _threshold = 0.01f;
 
@@ -103,7 +104,7 @@ namespace StarterAssets
 		private void Update()
 		{
 			JumpAndGravity();
-			IsGrounded();
+			Grounded = IsGrounded();
 			Move();
 		}
 
@@ -144,7 +145,7 @@ namespace StarterAssets
 		private void Move()
 		{
 			// set target speed based on move speed, sprint speed and if sprint is pressed
-			float targetSpeed = _input.sprint ? SprintSpeed : MoveSpeed;
+			float targetSpeed = IsGrounded() ? MoveSpeed : AirSpeed;
 
 			// a simplistic acceleration and deceleration designed to be easy to remove, replace, or iterate upon
 
@@ -174,19 +175,28 @@ namespace StarterAssets
 			}
 
 			// normalise input direction
-			Vector3 inputDirection = new Vector3(_input.move.x, 0.0f, _input.move.y).normalized;
+			_inputDir= new Vector3(_input.move.x, 0.0f, _input.move.y).normalized;
 
 			// note: Vector2's != operator uses approximation so is not floating point error prone, and is cheaper than magnitude
 			// if there is a move input rotate player when the player is moving
 			if (_input.move != Vector2.zero)
 			{
 				// move
-				inputDirection = transform.right * _input.move.x + transform.forward * _input.move.y;
+				_inputDir = transform.right * _input.move.x + transform.forward * _input.move.y;
 				PlatformVelocity = Vector3.zero;
 			}
 
+			var moveDir = ComputeMoveVector();
+
 			// move the player
-			_controller.Move(inputDirection.normalized * (_speed * Time.deltaTime) + new Vector3(0.0f, VerticalVelocity, 0.0f) * Time.deltaTime  + PlatformVelocity * Time.deltaTime);
+			_controller.Move(moveDir);
+		}
+
+		private Vector3 ComputeMoveVector()
+		{
+			Vector3 finalDir = _inputDir.normalized * (_speed * Time.deltaTime) + new Vector3(0.0f, VerticalVelocity, 0.0f) * Time.deltaTime  + PlatformVelocity * Time.deltaTime + BounceVelocity * Time.deltaTime;
+
+			return finalDir;
 		}
 
 		private void JumpAndGravity()
@@ -210,7 +220,7 @@ namespace StarterAssets
 			Color transparentGreen = new Color(0.0f, 1.0f, 0.0f, 0.35f);
 			Color transparentRed = new Color(1.0f, 0.0f, 0.0f, 0.35f);
 
-			if (Grounded) Gizmos.color = transparentGreen;
+			if (IsGrounded()) Gizmos.color = transparentGreen;
 			else Gizmos.color = transparentRed;
 
 			// when selected, draw a gizmo in the position of, and matching radius of, the grounded collider
