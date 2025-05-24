@@ -7,6 +7,6 @@ public class AbilitySwitchTrigger : MonoBehaviour
     {
         if (!other.CompareTag("Player")) return;
         other.GetComponent<PlayerLevelInfo>().IncreaseLevel();
-        Destroy(this);
+        Destroy(GameObject.Find("AbilitySwitcher"));
     }
 }
