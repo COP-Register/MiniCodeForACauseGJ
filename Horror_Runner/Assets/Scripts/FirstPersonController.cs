@@ -1,5 +1,6 @@
 ﻿using InputSystem;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 #if ENABLE_INPUT_SYSTEM
 using UnityEngine.InputSystem;
@@ -70,6 +71,8 @@ namespace StarterAssets
 		private StarterAssetsInputs _input;
 		private GameObject _mainCamera;
 		private Vector3 _inputDir;
+
+		public bool IsDashing = false;
 
 		private const float _threshold = 0.01f;
 
@@ -194,6 +197,10 @@ namespace StarterAssets
 
 		private Vector3 ComputeMoveVector()
 		{
+			if (SceneManager.GetActiveScene().name == "Level_3" && !IsGrounded())
+			{
+				_speed = 0f;
+			}
 			Vector3 finalDir = _inputDir.normalized * (_speed * Time.deltaTime) + new Vector3(0.0f, VerticalVelocity, 0.0f) * Time.deltaTime  + PlatformVelocity * Time.deltaTime + BounceVelocity * Time.deltaTime;
 
 			return finalDir;
