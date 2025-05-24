@@ -10,7 +10,6 @@ public class PlayerJumpAndDash : MonoBehaviour
     private FirstPersonController _fpController;
     private StarterAssetsInputs _input;
     private GameObject _mainCamera;
-    private bool _isOnBounceGround;
     public float _dashCooldownBase = 1f;
     public float _dashCooldownCurrent = 0f;
     public float _dashDurationBase = .5f;
@@ -63,24 +62,25 @@ public class PlayerJumpAndDash : MonoBehaviour
     
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
-        if (_fpController.VerticalVelocity < 0.0f)
+        if (enabled)
         {
-            _fpController.VerticalVelocity = -2f;
-        }
+            if (_fpController.VerticalVelocity < 0.0f)
+            {
+                _fpController.VerticalVelocity = -2f;
+            }
         
-        Vector3 dir;
-        if (hit.collider.CompareTag("BouncingPlatform"))
-        {
-            _fpController.VerticalVelocity = 2f;
-            dir = hit.transform.forward.normalized;
-            dir *= BounceStrength;
-            _isOnBounceGround = true;
+            Vector3 dir;
+            if (hit.collider.CompareTag("BouncingPlatform"))
+            {
+                _fpController.VerticalVelocity = 2f;
+                dir = hit.transform.forward.normalized;
+                dir *= BounceStrength;
+            }
+            else
+            {
+                dir = Vector3.zero;
+            }
+            _fpController.BounceVelocity = dir;
         }
-        else
-        {
-            dir = Vector3.zero;
-            _isOnBounceGround = false;
-        }
-        _fpController.BounceVelocity = dir;
     }
 }
