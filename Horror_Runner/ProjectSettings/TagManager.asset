@@ -6,6 +6,7 @@ TagManager:
   tags:
   - CinemachineTarget
   - MovingPlatform
+  - BouncingPlatform
   layers:
   - Default
   - TransparentFX
@@ -18,8 +19,6 @@ TagManager:
   - 
   - 
   - Grapple
-  - 
-  - 
   - 
   - 
   - 
