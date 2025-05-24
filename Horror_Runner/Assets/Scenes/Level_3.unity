@@ -1460,12 +1460,24 @@ PrefabInstance:
       propertyPath: m_RenderPostProcessing
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3114451530767316790, guid: c45c44b95ad8b8344bc7a64d87321be0, type: 3}
+      propertyPath: BounceStrength
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 3114451530767316790, guid: c45c44b95ad8b8344bc7a64d87321be0, type: 3}
+      propertyPath: _dashDurationBase
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 3322448649558489969, guid: c45c44b95ad8b8344bc7a64d87321be0, type: 3}
       propertyPath: m_Name
       value: PlayerNew
       objectReference: {fileID: 0}
     - target: {fileID: 4409025679590119946, guid: c45c44b95ad8b8344bc7a64d87321be0, type: 3}
       propertyPath: AirSpeed
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4409025679590119946, guid: c45c44b95ad8b8344bc7a64d87321be0, type: 3}
+      propertyPath: MoveSpeed
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4409025679590119946, guid: c45c44b95ad8b8344bc7a64d87321be0, type: 3}
