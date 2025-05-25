@@ -1,5 +1,6 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
     <Style src="project://database/Assets/UI/InGameUI/ingame.uss?fileID=7433441132597879392&amp;guid=612f4c49779681f44aa770df41e6045a&amp;type=3#ingame" />
+    <Style src="project://database/Assets/UI/StartMenu/start_menu.uss?fileID=7433441132597879392&amp;guid=4d170e7f356d0bd4eb85d3a385caf4aa&amp;type=3#start_menu" />
     <ui:VisualElement name="base-panel" class="base-panel" style="flex-grow: 1;">
         <ui:VisualElement name="level-timer-panel" class="level-timer-panel" style="flex-grow: 1;">
             <ui:Label text="60" name="countdown" class="countdown" style="font-size: 180px;" />
