@@ -1,7 +1,6 @@
 using InputSystem;
 using StarterAssets;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class PlayerJumpAndDash : MonoBehaviour
 {
