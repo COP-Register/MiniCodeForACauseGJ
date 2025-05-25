@@ -1,0 +1,45 @@
+.base-panel {
+    background-color: rgba(255, 0, 0, 0);
+}
+
+.level-timer-panel {
+    align-items: auto;
+    background-color: rgba(0, 0, 0, 0.23);
+    min-width: auto;
+    max-width: 13%;
+    min-height: auto;
+    max-height: 20%;
+    width: 13%;
+    height: 20%;
+    right: auto;
+    top: auto;
+    left: auto;
+    bottom: auto;
+    align-self: flex-end;
+}
+
+.countdown {
+    -unity-text-align: middle-center;
+    align-self: stretch;
+    width: 100%;
+    height: 100%;
+    font-size: 240px;
+    -unity-font-definition: url("project://database/Assets/Art/Fonts/Blackcraft.ttf?fileID=12800000&guid=076b3b2f571f62d438341fe7645b502c&type=3#Blackcraft");
+    color: rgb(111, 5, 2);
+    background-color: rgba(225, 255, 0, 0);
+}
+
+.message-box-panel {
+    background-color: rgba(0, 0, 0, 0.42);
+    height: 30%;
+    max-height: 35%;
+    top: 0;
+    left: 15%;
+    right: 15%;
+    width: 70%;
+    color: rgba(27, 27, 27, 0);
+}
+
+.hide {
+    display: none;
+}

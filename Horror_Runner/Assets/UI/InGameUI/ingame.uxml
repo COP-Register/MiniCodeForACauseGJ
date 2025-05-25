@@ -1,0 +1,11 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/InGameUI/ingame.uss?fileID=7433441132597879392&amp;guid=612f4c49779681f44aa770df41e6045a&amp;type=3#ingame" />
+    <ui:VisualElement name="base-panel" class="base-panel" style="flex-grow: 1;">
+        <ui:VisualElement name="level-timer-panel" class="level-timer-panel" style="flex-grow: 1;">
+            <ui:Label text="60" name="countdown" class="countdown" style="font-size: 180px;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="message-box" class="message-box-panel" style="flex-grow: 1; top: 40%; align-content: flex-end; align-items: center; flex-direction: column-reverse;">
+            <ui:Label text="you have overcame your fear. you can now charge up your jump" name="message-box-text" style="white-space: normal; -unity-text-align: lower-center; font-size: 80px; height: 100%; width: 100%; max-width: none; max-height: none; border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px; -unity-font-definition: url(&quot;project://database/Assets/Art/Fonts/Blackcraft.ttf?fileID=12800000&amp;guid=076b3b2f571f62d438341fe7645b502c&amp;type=3#Blackcraft&quot;); align-items: flex-start; color: rgb(122, 0, 0); text-overflow: clip; background-color: rgba(0, 0, 0, 0); align-self: stretch; flex-direction: column-reverse;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
