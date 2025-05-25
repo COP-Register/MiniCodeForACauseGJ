@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class AbilitySwitchTrigger : MonoBehaviour
 {
+    [SerializeField] private AudioClip pickupSound;
+    
     private void OnTriggerEnter(Collider other)
     {
         if (!other.CompareTag("Player")) return;
@@ -10,6 +12,7 @@ public class AbilitySwitchTrigger : MonoBehaviour
         uiScript.ShowMessageBox(_playerInfoScript.GetCurrentLevel());
         uiScript.StopTimer();
         _playerInfoScript.IncreaseLevel();
+        SoundManager.Instance.PlaySound(pickupSound, transform, 100);
         Destroy(GameObject.Find("AbilitySwitcher"));
     }
 }
