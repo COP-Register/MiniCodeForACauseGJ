@@ -5,6 +5,7 @@ public class RedLight : MonoBehaviour
 {
     [SerializeField] private GameObject player;
     [SerializeField] private Color color = Color.red;
+    [SerializeField] private AudioClip clip;
     private Light _light;
     private Color _lastColor;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -24,6 +25,7 @@ public class RedLight : MonoBehaviour
         _lastColor = _light.color;
         _light.color = color;
         _light.intensity = 2f;
+        SoundManager.Instance.PlaySound(clip, transform, 100);
     }
 
     private void OnTriggerExit(Collider other)
