@@ -42,7 +42,7 @@ public class PlayerJumpAndDash : MonoBehaviour
 
     private void Dash()
     {
-        if (SceneManager.GetActiveScene().name != "Level_3" || _fpController.IsGrounded()) return;
+        if (_fpController.IsGrounded()) return;
         
         // Dash
         if (_input.jump && _dashCooldownCurrent <= 0f)
