@@ -8,6 +8,36 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/Scenes/Level_0_Titel.unity
+    guid: 93603efa777b1574eb287ddc9d911202
+  - enabled: 1
+    path: Assets/Scenes/Level_0.unity
+    guid: 75aa0a86528166a49abfbc3d1ef3f9da
+  - enabled: 1
+    path: Assets/Scenes/Level_1_Titel.unity
+    guid: e4843fea121b69d4faebcacf1c998a30
+  - enabled: 1
+    path: Assets/Scenes/Level_1.unity
+    guid: 4deac37651091d548b4d4e0ab89d7297
+  - enabled: 1
+    path: Assets/Scenes/Level_2_Titel.unity
+    guid: 3ac4f62607a51834ab0eec7e06af6461
+  - enabled: 1
+    path: Assets/Scenes/Level_2.unity
+    guid: 88bc056b8633dc744a95fcfc65f8e2e7
+  - enabled: 1
+    path: Assets/Scenes/Level_3_Titel.unity
+    guid: 65e4f121cb1670b4e9f12582e7a1b134
+  - enabled: 1
+    path: Assets/Scenes/Level_3.unity
+    guid: e1f4a80182655ec4eb88acd79c279592
+  - enabled: 1
+    path: Assets/Scenes/Level_3_End.unity
+    guid: 5cd26b8cdb39c644592592b694d4bacc
+  - enabled: 1
+    path: Assets/Scenes/Level_3_Thank.unity
+    guid: 1210e57815323024a90a5fc86738eba5
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 9e7be553448fa2546aea5752021cbcf7, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}

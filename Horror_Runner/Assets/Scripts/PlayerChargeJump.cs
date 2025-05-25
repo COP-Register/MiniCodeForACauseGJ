@@ -21,8 +21,7 @@ public class PlayerChargeJump : MonoBehaviour
     private Vector3 _lastPosition;
     private const float Tolerance = 0.01f;
     [SerializeField] private float jumpTimer;
-    [SerializeField] private bool isJumping = false;
-
+    
     //private bool _isLoading = false;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -71,7 +70,6 @@ public class PlayerChargeJump : MonoBehaviour
                 _fpController.VerticalVelocity = Mathf.Sqrt(_fpController.JumpHeight * -2f * _fpController.Gravity * _jumpLoad);
                 _jumpLoad = 0.0f;
                 jumpTimer = 0.5f;
-                isJumping = true;
             }
 
             // jump timeout
@@ -79,8 +77,6 @@ public class PlayerChargeJump : MonoBehaviour
             {
                 _jumpTimeoutDelta -= Time.deltaTime;
             }
-            
-            isJumping = false;
         }
         else
         {
