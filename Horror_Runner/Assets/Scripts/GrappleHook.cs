@@ -1,7 +1,6 @@
 using InputSystem;
 using StarterAssets;
-using TMPro;
-using Unity.VisualScripting;
+
 using UnityEngine;
 
 public class GrappleHook : MonoBehaviour
@@ -16,7 +15,7 @@ public class GrappleHook : MonoBehaviour
     [SerializeField] private float grappleSpeed = 50.0f;
     private Vector3 _grapplePoint;
     private Vector3 _grappleDirection;
-    private bool _isGrappling = false;
+    private bool _isGrappling;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
