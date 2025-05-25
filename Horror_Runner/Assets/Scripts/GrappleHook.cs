@@ -13,6 +13,7 @@ public class GrappleHook : MonoBehaviour
     [SerializeField] private LayerMask grappleLayer;
     [SerializeField] private float maxDistant = 50.0f;
     [SerializeField] private float grappleSpeed = 50.0f;
+    [SerializeField] private AudioClip clip;
     private Vector3 _grapplePoint;
     private Vector3 _grappleDirection;
     private bool _isGrappling;
@@ -38,6 +39,7 @@ public class GrappleHook : MonoBehaviour
                     _grapplePoint = hit.point;
                     _grappleDirection = _grapplePoint - transform.position;
                     _isGrappling = true;
+                    SoundManager.Instance.PlaySound(clip, transform, 100);
                 }
             }
         }
