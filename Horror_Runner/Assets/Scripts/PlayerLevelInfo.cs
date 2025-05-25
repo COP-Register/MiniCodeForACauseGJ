@@ -19,6 +19,9 @@ public class PlayerLevelInfo : MonoBehaviour
         SetLevelInitial();
         
     }
+
+    public Level GetCurrentLevel() => _currentLevel;
+    
     
     public void IncreaseLevel()
     {
