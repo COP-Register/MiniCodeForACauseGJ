@@ -30,7 +30,7 @@
 }
 
 .message-box-panel {
-    background-color: rgba(0, 0, 0, 0.42);
+    background-color: rgba(0, 0, 0, 0);
     height: 30%;
     max-height: 35%;
     top: 0;
@@ -38,6 +38,7 @@
     right: 15%;
     width: 70%;
     color: rgba(27, 27, 27, 0);
+    -unity-text-outline-color: rgba(0, 0, 0, 0);
 }
 
 .hide {

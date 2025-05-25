@@ -89,7 +89,8 @@ public class IngameUI : MonoBehaviour
     
     private void LevelFailed()
     {
-        // LOAD ENTRY SCENE HERE
+        var sceneSwitcher = GameObject.Find("SceneSwitcher").GetComponent<SceneSwitcher>();
+        sceneSwitcher.ReloadCurrentScene();
     }
 
 }
