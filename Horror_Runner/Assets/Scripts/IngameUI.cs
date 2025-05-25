@@ -6,6 +6,7 @@ public class IngameUI : MonoBehaviour
     public VisualElement ui;
 
     private Label _timerText;
+    private VisualElement _timerElement;
     private VisualElement _messageBoxElement;
     private Label _messageBoxText;
     
@@ -15,18 +16,19 @@ public class IngameUI : MonoBehaviour
     private const string _level_3_msg_box = "Message Box Text 3";
 
     private float _levelTimer = 60f;
+    private bool _countdownActive = true;
 
     private void Update()
     {
-        _levelTimer -= Time.deltaTime;
+        if(_countdownActive) _levelTimer -= Time.deltaTime;
         if (_levelTimer < 0f) LevelFailed();
         CountdownUpdate();
-
     }
 
-    private void LevelFailed()
+    public void HideMessageBox()
     {
-        // LOAD ENTRY SCENE HERE
+        _messageBoxElement.visible = false;
+        _messageBoxText.visible = false;
     }
 
     private void Awake()
@@ -38,8 +40,19 @@ public class IngameUI : MonoBehaviour
     {
         _timerText = ui.Q<Label>("countdown");
         _messageBoxText = ui.Q<Label>("message-box-text");
+        
+        _timerElement = ui.Q<VisualElement>("level-timer-panel");
         _messageBoxElement = ui.Q<VisualElement>("message-box");
         HideMessageBox();
+    }
+
+    public void StopTimer() => DisableTimer();
+
+    private void DisableTimer()
+    {
+        _countdownActive = false;
+        _timerElement.visible = false;
+        _timerText.text = "";
     }
 
     public void ShowMessageBox(PlayerLevelInfo.Level level)
@@ -68,15 +81,15 @@ public class IngameUI : MonoBehaviour
                 break;
         }
     }
-
-    public void HideMessageBox()
-    {
-        _messageBoxElement.visible = false;
-        _messageBoxText.visible = false;
-    }
-
+    
     private void CountdownUpdate()
     {
-        _timerText.text = _levelTimer.ToString("F0");
+        if(_countdownActive) _timerText.text = _levelTimer.ToString("F0");
     }
+    
+    private void LevelFailed()
+    {
+        // LOAD ENTRY SCENE HERE
+    }
+
 }
