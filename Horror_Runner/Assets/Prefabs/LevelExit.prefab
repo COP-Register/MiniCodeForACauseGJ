@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5496301646817094576}
   - component: {fileID: 3006032917190835708}
+  - component: {fileID: 1114212678784312136}
   m_Layer: 0
   m_Name: LevelExit
   m_TagString: Untagged
@@ -53,3 +54,15 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 4.1319404, y: 15.612701, z: 3.6901267}
   m_Center: {x: 0.1759846, y: 7.306326, z: 0.025100466}
+--- !u!114 &1114212678784312136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8471001539064677267}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ef27ab5f18aa8642b37a951f41be042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
