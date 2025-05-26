@@ -3057,6 +3057,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: IngameUI
       objectReference: {fileID: 0}
+    - target: {fileID: 5027460086699470971, guid: 614f9f32c6dd7524093a275dfa5faf31, type: 3}
+      propertyPath: deathSound
+      value: 
+      objectReference: {fileID: 8300000, guid: be1131fa184e39c4c8ebba1b838c7ac8, type: 3}
     - target: {fileID: 5455960655915770839, guid: 614f9f32c6dd7524093a275dfa5faf31, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

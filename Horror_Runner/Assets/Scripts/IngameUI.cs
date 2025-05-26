@@ -17,11 +17,19 @@ public class IngameUI : MonoBehaviour
 
     private float _levelTimer = 60f;
     private bool _countdownActive = true;
+    private bool _playedSound;
+    
+    [SerializeField] private AudioClip deathSound;
 
     private void Update()
     {
         if(_countdownActive) _levelTimer -= Time.deltaTime;
         if (_levelTimer < 0f) LevelFailed();
+        if (_levelTimer < 3f && !_playedSound)
+        {
+            SoundManager.Instance.PlaySound(deathSound, transform, 100);
+            _playedSound = true;
+        }
         CountdownUpdate();
     }
 
@@ -87,6 +95,7 @@ public class IngameUI : MonoBehaviour
         if(_countdownActive) _timerText.text = _levelTimer.ToString("F0");
     }
     
+    // ReSharper disable Unity.PerformanceAnalysis
     private void LevelFailed()
     {
         var sceneSwitcher = GameObject.Find("SceneSwitcher").GetComponent<SceneSwitcher>();

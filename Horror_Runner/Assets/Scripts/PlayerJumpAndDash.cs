@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerJumpAndDash : MonoBehaviour
 {
     [SerializeField] private float BounceStrength = 1f;
+    [SerializeField] private AudioClip clip;
 
     private FirstPersonController _fpController;
     private StarterAssetsInputs _input;
@@ -74,6 +75,7 @@ public class PlayerJumpAndDash : MonoBehaviour
                 _fpController.VerticalVelocity = 2f;
                 dir = hit.transform.forward.normalized;
                 dir *= BounceStrength;
+                SoundManager.Instance.PlaySound(clip, transform, 100);
             }
             else
             {
