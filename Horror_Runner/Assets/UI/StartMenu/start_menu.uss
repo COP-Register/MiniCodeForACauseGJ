@@ -1,0 +1,21 @@
+.main-menu-btn {
+    -unity-font-definition: url("project://database/Assets/Art/Fonts/Blackcraft.ttf?fileID=12800000&guid=076b3b2f571f62d438341fe7645b502c&type=3#Blackcraft");
+    justify-content: flex-start;
+    align-self: center;
+    -unity-background-image-tint-color: rgba(255, 255, 255, 0);
+    border-top-width: 3px;
+    border-right-width: 3px;
+    border-bottom-width: 3px;
+    border-left-width: 3px;
+    border-left-color: rgb(112, 0, 0);
+    border-right-color: rgb(112, 0, 0);
+    border-top-color: rgb(112, 0, 0);
+    border-bottom-color: rgb(112, 0, 0);
+    height: 30%;
+    top: auto;
+    bottom: auto;
+    width: 30%;
+    background-color: rgba(0, 0, 0, 0);
+    font-size: 80px;
+    color: rgb(123, 0, 0);
+}

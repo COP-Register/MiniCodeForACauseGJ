@@ -1,0 +1,10 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/InGameUI/ingame.uss?fileID=7433441132597879392&amp;guid=612f4c49779681f44aa770df41e6045a&amp;type=3#ingame" />
+    <Style src="project://database/Assets/UI/StartMenu/start_menu.uss?fileID=7433441132597879392&amp;guid=4d170e7f356d0bd4eb85d3a385caf4aa&amp;type=3#start_menu" />
+    <ui:VisualElement name="base-panel" class="base-panel" style="flex-grow: 1;">
+        <ui:VisualElement style="flex-grow: 1; height: 30%; max-height: 30%; flex-direction: column; align-items: center; justify-content: space-between; align-self: stretch; top: 52%; align-content: flex-start;">
+            <ui:Button text="Start" name="start-btn" class="main-menu-btn" />
+            <ui:Button text="Quit" name="quit-btn" class="main-menu-btn" style="bottom: 15%;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
