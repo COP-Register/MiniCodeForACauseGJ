@@ -10,9 +10,9 @@ public class IngameUI : MonoBehaviour
     private VisualElement _messageBoxElement;
     private Label _messageBoxText;
     
-    private const string _level_0_msg_box = "Message Box Text 0";
-    private const string _level_1_msg_box = "Message Box Text 1";
-    private const string _level_2_msg_box = "Message Box Text 2";
+    private const string _level_0_msg_box = "You've overcame your fear.\nCharged Jump unlocked.";
+    private const string _level_1_msg_box = "You've overcame your fear. \nGrapple Hook unlocked.";
+    private const string _level_2_msg_box = "You've overcame your fear. \nFalling Dash unlocked.";
     private const string _level_3_msg_box = "Message Box Text 3";
 
     private float _levelTimer = 60f;
