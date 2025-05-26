@@ -17,6 +17,7 @@ public class SceneSwitcher : MonoBehaviour
         _currentSceneName = SceneManager.GetActiveScene().name;
         SetNextScene();
         if(IsFillerScene) LoadNextScene();
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     public void ReloadCurrentScene()
