@@ -6,6 +6,7 @@ public class SceneSwitcher : MonoBehaviour
 {
     public float DelayForNextScene = 5f;
     public bool IsFillerScene;
+    [SerializeField] private string _titleScene;
 
 
     private string _currentSceneName;
@@ -20,10 +21,11 @@ public class SceneSwitcher : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
     }
 
-    public void ReloadCurrentScene()
+    public void ReloadTitleScene()
     {
-        SceneManager.LoadScene(_currentSceneName);
+        SceneManager.LoadScene(_titleScene);
     }
+    
 
     public void LoadNextScene()
     {
