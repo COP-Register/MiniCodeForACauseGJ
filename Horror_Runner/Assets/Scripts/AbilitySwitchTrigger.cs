@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class AbilitySwitchTrigger : MonoBehaviour
 {
@@ -13,6 +15,8 @@ public class AbilitySwitchTrigger : MonoBehaviour
         uiScript.StopTimer();
         _playerInfoScript.IncreaseLevel();
         SoundManager.Instance.PlaySound(pickupSound, transform, 100);
+        if(SceneManager.GetActiveScene().name == "Level_1")
+            GameObject.Find("HUD").GetComponentInChildren<RawImage>().enabled = true;
         Destroy(GameObject.Find("AbilitySwitcher"));
     }
 }
